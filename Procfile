@@ -1,0 +1,1 @@
+web gunicorn shopfizz.wsgi:application --log-file-
