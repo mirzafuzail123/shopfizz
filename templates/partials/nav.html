@@ -1,0 +1,85 @@
+
+  {% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container-fluid">
+      <a class="navbar-brand pt-3" href="/" style="font-family:fantasy;"><h3>Shopfizz</h2></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active" href={% url 'shopfizz-tracker' %}>Tracker</a>
+          </li>
+          <li class="nav-item active">
+            <a href="dashboard" class="nav-link active">Sell on Shopfizz</a>
+          </li>
+         
+          <li class="nav-item active">
+            <a class="nav-link disabled">Customer Care</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link disabled">About</a>
+          </li>
+        </ul>
+        <a href="#" class="nav-link active " style="color:white ;">Welcome {{request.user}}</a>
+
+        <a href={% url 'shopfizz-logout' %} class="nav-link active mx-3" style="color:white ;">logout</a>
+
+        <a class="nav-link active" style="color:white ;"href={% url 'cart-detail' %}><i class="fa-solid fa-cart-shopping"></i>  Cart <span class="badge text-bg-secondary">{{request.session.cart|length}}</span>
+        </a>
+
+        
+      </div>
+    </div>
+  </nav>
+  <form class="d-flex mt-3 " role="search" style="margin-right:200px ;margin-left:200px" method='GET' action='/search'>
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='query' id='query'>
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+  {%else%}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+    <div class="container-fluid">
+      <a class="navbar-brand pt-3" href="/" ><h3>Shopfizz</h2></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a href="/" class="nav-link active">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active" href={% url 'shopfizz-tracker' %}>Tracker</a>
+          </li>
+          <li class="nav-item active">
+            <a href="dashboard" class="nav-link active">Sell on Shopfizz</a>
+          </li>
+         
+          <li class="nav-item active">
+            <a class="nav-link active">Customer Care</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active">About</a>
+          </li>
+        </ul>
+
+        <a href="login" class="nav-link active mx-2" style="color:white ;">login</a>
+        <a href="register" class="nav-link active mx-2" style="color:white ;">Signup</a>
+        
+      </div>
+    </div>
+  </nav>
+  <form class="d-flex mt-3 " role="search" style="margin-right:200px ;margin-left:200px">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+ 
+  {% endif %}

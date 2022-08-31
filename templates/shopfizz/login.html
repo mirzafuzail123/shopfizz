@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+{% block title %}login{% endblock title %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<h3 style='margin-top:100px;text-align:center;'> Welcome to Shopfizz! Please login.</h3>
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="border p-3 " style="background-color:darkgrey ;">
+                <form method='post' action="login">
+                    {% csrf_token %}
+                      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                  
+                      <div class="form-floating">
+                        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com" style="width:340px ; ">
+                        <label for="floatingInput">Username</label>
+                      </div>
+                      <div class="form-floating">
+                        <input type="password" name='password'class="form-control mt-3" id="floatingPassword" placeholder="Password" style="width:340px ; ">
+                        <label for="floatingPassword">Password</label>
+                      </div>
+                  
+                      
+                      <button class=" btn btn-primary mt-5" type="submit" style="width:300px ; ">Sign in</button>
+                      <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+                    </form>
+                    <p>Doesn't have an account? <a href="register">Register</a> here </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,25 @@
+{% extends 'partials/base.html' %}
+{% block title %}Register{% endblock title %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<h3 style='margin-top:100px;text-align:center;'> Welcome to Shopfizz! Please Create Your account.</h3>
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="border p-3 " style="background-color:darkgrey ;">
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <br>
+                    <input type='submit' class="btn btn-success my-3"  value="Register">
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

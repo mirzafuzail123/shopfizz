@@ -1,0 +1,29 @@
+{% extends 'partials/base.html' %}
+{% block title %}{% endblock title %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mt-4">
+            <img src='/media/{{product.image}}' alt="" style="    width: 100%;
+        margin-top: 80px">
+        </div>
+        <div class="col-md-8" style="margin-top: 100px;">
+            <h3>{{product.name}}</h3>
+            <h6>Rs. {{product.price}}</h6>
+            <h6>Sell by: <a href="">{{product.seller}}</h6></a>
+            <p>{{product.desc}}</p>
+
+            <div class="row">
+                
+                <a href="/cart/add/{{product.id}}/"><button class="btn btn-secondary cart" id="pr {{product.id}}">Add to Cart</button></a>
+            
+                <a href="/cart/buy/{{product.id}}/"><button class="btn btn-secondary my-2" id="prrr {{product.id}}">Buy Now</button></a>
+            </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+{% endblock body %}

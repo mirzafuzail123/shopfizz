@@ -1,0 +1,137 @@
+{% extends 'dashboard/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Product{% endblock title %}
+ {% block body %}
+ 
+    <!--Topside-->
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Information
+                    </div>
+                    <div class="card-body">
+                        <marquee behavior="" direction="">
+                            <h3 class="my-4">This is the Information</h3>
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Statistics
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                                <a class="text-decoration-none text-dark" href={% url 'dashboard-product' %}>
+                                    <div class="card my-card shadow text-center p-3">
+                                        <h4>Products <i class="fas fa-box"></i></h4>
+                                        <h3>{{length}}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="text-decoration-none text-dark" href="{% url 'dashboard-order' %}">
+                                    <div class="card my-card shadow text-center p-3">
+                                        <h4>Orders <i class="fas fa-shipping-fast"></i></h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Topside-->
+    <!--Table-->
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-4">
+                <div class="border bg-white p-3">
+                    <h4>Add Products</h4>
+                    <hr>
+                    <form action={% url 'dashboard-product' %} method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name"
+                              name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" name="quantity" class="form-control" id="quantity">
+                        </div>
+                        <div class="form-group ">
+                            <label for="inputState">Category</label>
+                            <select id="category" name="category" class="form-control">
+                                <option selected>Choose...</option>
+                                <option>Stationary</option>
+                                <option>Fashion</option>
+                                <option>Electronic device</option>
+                                <option>Babies & Toys</option>
+
+                                <option>Food</option>
+
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" name="price" class="form-control" id="price">
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Desc</label>
+                            <input type="text" name="desc" class="form-control" id="desc">
+                        </div>
+                        <input type="file" name="image" accept="image/*">
+
+                        <input class="btn btn-success btn-block" type="submit" value="Add Product">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <table class="table bg-white">
+                    <thead class="bg-info">
+                        <tr class="text-white">
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items  %}
+
+                        <tr>
+                            <th scope="row">{{item.id}}</th>
+                            <td>{{item.name}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href='product/update/{{item.id}}'>Edit</a>
+                                <a class="btn btn-danger btn-sm" href='product/delete/{{item.id}}'>Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %} 
+                   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!--End Table-->
+
+ {% endblock body %}
+
